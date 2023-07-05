@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    nav.navbar.navbar-inverse( role="navigation" )
+        .navbar-header
+            button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#navbar-inverse", aria-expanded="false", aria-controls="navbar",background-color= '#333')
+                span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+            a.navbar-brand(href="/vaccine_enroll/#{enrollingVaccine._id}",active='true') Home
+            a.navbar-brand(href="/people_login") Sign Out
+    h1
+    p
+        .main.container
+            .row
+                .col-md-6.col-md-offset-3
+                h4.display-4.m-b-2 Enroll
+                .image-block
+                    img.className#IdName(src="/images/enrollm.png",height='80px',width='250px' alt="Image Title")
+                form(method = "POST" , action="/vaccine_enroll/#{enrollingVaccine._id}",name="enrollvaccine")
+                    div(style="margin-bottom:50px;").col-sm-6.col-sm-offset-3
+                        div.form-group
+                            font(size='4') Vaccine Name: #{enrollingVaccine.cname}
+                        div.form-group
+                            font(size='4') Time Slot: #{enrollingVaccine.duration}
+                        div.form-group
+                            font(size='4') Available Slot count: #{enrollingVaccine.seats}
+                        div.form-group
+                            font(size='4') No of Slot you want to book:
+                            input#password.form-control(type='number', placeholder = 'No of Slot you want to book', name ='enrollingSeats',required='true')
+                        div.form-group
+                            button.btn.btn-primary(type ='submit',onClick='return confirm(\'Are you sure you want to enroll for this vaccine?\');') Book Slot
+                    div.footer
